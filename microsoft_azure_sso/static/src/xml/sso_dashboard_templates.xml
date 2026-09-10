@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="microsoft_azure_sso.SsoDashboard" owl="1">
+        <div class="o_sso_dashboard p-4">
+            <div class="d-flex align-items-center mb-1">
+                <i class="fa fa-windows fa-lg me-2 text-primary" title="Microsoft SSO"/>
+                <h2 class="mb-0">Microsoft SSO Dashboard</h2>
+            </div>
+            <p class="text-muted mb-4">
+                Ringkasan aktivitas login Single Sign-On melalui Microsoft Azure AD.
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-md-3">
+                    <div class="o_sso_stat_card border rounded p-3 d-flex align-items-center gap-3">
+                        <i class="fa fa-sign-in fa-2x text-muted"/>
+                        <div>
+                            <div class="text-muted small">Total Logins</div>
+                            <div class="fs-2 fw-bold" t-esc="state.total"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="o_sso_stat_card border rounded p-3 o_sso_stat_success d-flex align-items-center gap-3"
+                         t-on-click="() => this.openAuditLogs([['status','=','success']])"
+                         style="cursor:pointer;">
+                        <i class="fa fa-check-circle fa-2x text-success"/>
+                        <div>
+                            <div class="text-muted small">Successful</div>
+                            <div class="fs-2 fw-bold text-success" t-esc="state.success"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="o_sso_stat_card border rounded p-3 o_sso_stat_failed d-flex align-items-center gap-3"
+                         t-on-click="() => this.openAuditLogs([['status','=','failed']])"
+                         style="cursor:pointer;">
+                        <i class="fa fa-times-circle fa-2x text-danger"/>
+                        <div>
+                            <div class="text-muted small">Failed</div>
+                            <div class="fs-2 fw-bold text-danger" t-esc="state.failed"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="o_sso_stat_card border rounded p-3 d-flex align-items-center gap-3">
+                        <i class="fa fa-users fa-2x text-muted"/>
+                        <div>
+                            <div class="text-muted small">Unique Users</div>
+                            <div class="fs-2 fw-bold" t-esc="state.uniqueUsers"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o_sso_recent_logs">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="mb-0"><i class="fa fa-history me-2"/>Recent Logins</h4>
+                    <button class="btn btn-link" t-on-click="() => this.openAuditLogs([])">
+                        <i class="fa fa-list-alt me-1"/>View all audit logs
+                    </button>
+                </div>
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fa fa-clock-o me-1"/>Date</th>
+                            <th><i class="fa fa-envelope me-1"/>Microsoft Account</th>
+                            <th><i class="fa fa-user me-1"/>Odoo User</th>
+                            <th><i class="fa fa-globe me-1"/>IP Address</th>
+                            <th><i class="fa fa-info-circle me-1"/>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.recentLogs" t-as="log" t-key="log.id">
+                            <tr>
+                                <td t-esc="log.login_date"/>
+                                <td t-esc="log.azure_email"/>
+                                <td t-esc="log.user_id and log.user_id[1]"/>
+                                <td t-esc="log.ip_address"/>
+                                <td>
+                                    <span t-attf-class="badge #{log.status === 'success' ? 'text-bg-success' : 'text-bg-danger'}">
+                                        <i t-attf-class="fa #{log.status === 'success' ? 'fa-check' : 'fa-times'} me-1"/>
+                                        <t t-esc="log.status"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr t-if="!state.recentLogs.length and !state.loading">
+                            <td colspan="5" class="text-center text-muted">
+                                <i class="fa fa-inbox me-1"/>No Microsoft SSO logins recorded yet.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>

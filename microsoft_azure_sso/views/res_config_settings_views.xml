@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_sso" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.microsoft.sso</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Microsoft SSO" string="Microsoft SSO" name="microsoft_azure_sso"
+                     groups="base.group_system">
+                    <block title="Microsoft Azure SSO" name="microsoft_sso_general">
+                        <setting id="azure_sso_enabled_setting" string="Enable Microsoft SSO"
+                                 help="Show the &quot;Login with Microsoft&quot; button on the login page and allow authentication through Azure AD.">
+                            <field name="azure_sso_enabled"/>
+                        </setting>
+                    </block>
+                    <block title="Azure App Registration" name="microsoft_sso_credentials"
+                           invisible="not azure_sso_enabled">
+                        <setting id="azure_client_id_setting" string="Application (Client) ID">
+                            <field name="azure_client_id"/>
+                        </setting>
+                        <setting id="azure_client_secret_setting" string="Client Secret">
+                            <field name="azure_client_secret" password="True"/>
+                        </setting>
+                        <setting id="azure_tenant_id_setting" string="Directory (Tenant) ID"
+                                 help="Use &quot;common&quot; to allow any Microsoft account, or your Azure AD tenant ID / domain to restrict login to your organization.">
+                            <field name="azure_tenant_id" placeholder="common"/>
+                        </setting>
+                        <setting id="azure_redirect_uri_setting" string="Redirect URI"
+                                 help="Register this exact URL as a Redirect URI (Web platform) on your Azure AD App Registration.">
+                            <field name="azure_redirect_uri" readonly="1"/>
+                        </setting>
+                    </block>
+                    <block title="Users &amp; Notifications" name="microsoft_sso_notifications"
+                           invisible="not azure_sso_enabled">
+                        <setting id="azure_auto_create_user_setting" string="Auto-create Users"
+                                 help="Automatically create an internal Odoo user the first time someone signs in with a Microsoft account that matches no existing user.">
+                            <field name="azure_auto_create_user"/>
+                        </setting>
+                        <setting id="azure_notify_user_on_login_setting" string="Notify User on Successful Login">
+                            <field name="azure_notify_user_on_login"/>
+                        </setting>
+                        <setting id="azure_notify_admin_on_failure_setting" string="Notify Administrators on Failed Login">
+                            <field name="azure_notify_admin_on_failure"/>
+                        </setting>
+                    </block>
+                    <block title="Bantuan" name="microsoft_sso_help">
+                        <div class="o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">
+                                    <i class="fa fa-question-circle me-1"/>Cara Penggunaan
+                                </span>
+                                <div class="text-muted">
+                                    Panduan lengkap langkah demi langkah tersedia di menu
+                                    <b>Microsoft SSO &#8594; Panduan Penggunaan</b>.
+                                </div>
+                                <div class="content-group">
+                                    <ol class="text-muted mb-0">
+                                        <li>Daftarkan aplikasi di Azure Portal &amp; salin Client ID / Secret / Tenant ID ke atas.</li>
+                                        <li>Aktifkan "Enable Microsoft SSO" lalu simpan &#8211; tombol Login with Microsoft otomatis muncul di halaman login.</li>
+                                        <li>Pantau hasil login melalui menu <b>Microsoft SSO &#8594; Dashboard</b> dan <b>Audit Logs</b>.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="microsoft_azure_sso.SsoHelp" owl="1">
+        <div class="o_sso_help p-4" style="max-width: 900px;">
+            <div class="d-flex align-items-center mb-1">
+                <i class="fa fa-question-circle fa-lg me-2 text-primary"/>
+                <h2 class="mb-0">Panduan Penggunaan Microsoft SSO</h2>
+            </div>
+            <p class="text-muted mb-4">
+                Ringkasan singkat cara mengaktifkan, mengonfigurasi, dan menggunakan
+                fitur Microsoft SSO pada Odoo.
+            </p>
+
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                    <i class="fa fa-cogs me-2"/><strong>1. Untuk Administrator &#8211; Konfigurasi Awal</strong>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li class="mb-2">
+                            <i class="fa fa-cloud me-1 text-muted"/>
+                            Buat <b>App Registration</b> di
+                            <a href="https://portal.azure.com" target="_blank">Azure Portal</a>
+                            (Azure Active Directory / Entra ID → App registrations → New registration).
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-link me-1 text-muted"/>
+                            Pada <b>Redirect URI</b> (platform Web), isi:
+                            <code>https://&lt;domain-odoo-anda&gt;/microsoft_sso/callback</code>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-key me-1 text-muted"/>
+                            Catat <b>Application (Client) ID</b>, <b>Directory (Tenant) ID</b>, dan buat
+                            <b>Client Secret</b> baru di menu Certificates &amp; secrets.
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-sliders me-1 text-muted"/>
+                            Buka <b>Settings → General Settings → Microsoft SSO</b> di Odoo,
+                            aktifkan <b>Enable Microsoft SSO</b>, lalu isi Client ID, Client Secret, dan Tenant ID.
+                        </li>
+                        <li>
+                            <i class="fa fa-save me-1 text-muted"/>
+                            Simpan pengaturan. Tombol <b>"Login with Microsoft"</b> akan otomatis
+                            muncul di halaman login Odoo.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                    <i class="fa fa-sign-in me-2"/><strong>2. Untuk Pengguna &#8211; Cara Login</strong>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li class="mb-2">Buka halaman login Odoo.</li>
+                        <li class="mb-2">Klik tombol <b>"Login with Microsoft"</b>.</li>
+                        <li class="mb-2">Masuk menggunakan akun Microsoft / Azure AD Anda (email kantor).</li>
+                        <li>Anda akan otomatis diarahkan kembali ke Odoo dan langsung login &#8211;
+                            tidak perlu mengingat password Odoo terpisah.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                    <i class="fa fa-tachometer me-2"/><strong>3. Dashboard &amp; Audit Log</strong>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li class="mb-2">
+                            <i class="fa fa-bar-chart me-1 text-muted"/>
+                            Menu <b>Microsoft SSO → Dashboard</b> menampilkan ringkasan jumlah login
+                            (total, sukses, gagal, jumlah user unik) beserta daftar login terbaru.
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-list-alt me-1 text-muted"/>
+                            Menu <b>Microsoft SSO → Audit Logs</b> mencatat setiap percobaan login
+                            (waktu, email Microsoft, user Odoo, IP address, status, pesan error jika gagal).
+                        </li>
+                        <li>
+                            <i class="fa fa-lock me-1 text-muted"/>
+                            User biasa hanya bisa melihat riwayat login miliknya sendiri;
+                            hanya user dengan akses <b>Settings</b> yang dapat melihat seluruh data.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-light">
+                    <i class="fa fa-bell me-2"/><strong>4. Notifikasi</strong>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li class="mb-2">User akan mendapat notifikasi (toast) saat login SSO berhasil.</li>
+                        <li>Administrator akan menerima email saat ada percobaan login SSO yang gagal.
+                            Kedua notifikasi ini dapat diaktifkan/nonaktifkan di halaman Settings.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

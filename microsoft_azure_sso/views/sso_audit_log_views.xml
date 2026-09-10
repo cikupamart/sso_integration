@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sso_audit_log_view_list" model="ir.ui.view">
+        <field name="name">sso.audit.log.view.list</field>
+        <field name="model">sso.audit.log</field>
+        <field name="arch" type="xml">
+            <list string="Microsoft SSO Audit Logs" default_order="login_date desc" create="false" edit="false">
+                <field name="login_date"/>
+                <field name="azure_email"/>
+                <field name="user_id"/>
+                <field name="status" decoration-success="status == 'success'" decoration-danger="status == 'failed'" widget="badge"/>
+                <field name="ip_address"/>
+                <field name="error_message" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="sso_audit_log_view_form" model="ir.ui.view">
+        <field name="name">sso.audit.log.view.form</field>
+        <field name="model">sso.audit.log</field>
+        <field name="arch" type="xml">
+            <form string="Microsoft SSO Audit Log" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="login_date"/>
+                            <field name="user_id"/>
+                            <field name="azure_email"/>
+                            <field name="azure_ad_oid"/>
+                        </group>
+                        <group>
+                            <field name="status" widget="badge"
+                                   decoration-success="status == 'success'"
+                                   decoration-danger="status == 'failed'"/>
+                            <field name="ip_address"/>
+                            <field name="user_agent"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="error_message" invisible="status == 'success'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sso_audit_log_view_pivot" model="ir.ui.view">
+        <field name="name">sso.audit.log.view.pivot</field>
+        <field name="model">sso.audit.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Microsoft SSO Logins">
+                <field name="login_date" type="row" interval="day"/>
+                <field name="status" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="sso_audit_log_view_graph" model="ir.ui.view">
+        <field name="name">sso.audit.log.view.graph</field>
+        <field name="model">sso.audit.log</field>
+        <field name="arch" type="xml">
+            <graph string="Microsoft SSO Logins" type="bar">
+                <field name="login_date" interval="day"/>
+                <field name="status"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="sso_audit_log_view_search" model="ir.ui.view">
+        <field name="name">sso.audit.log.view.search</field>
+        <field name="model">sso.audit.log</field>
+        <field name="arch" type="xml">
+            <search string="Search SSO Audit Logs">
+                <field name="azure_email"/>
+                <field name="user_id"/>
+                <field name="ip_address"/>
+                <filter string="Success" name="filter_success" domain="[('status', '=', 'success')]"/>
+                <filter string="Failed" name="filter_failed" domain="[('status', '=', 'failed')]"/>
+                <separator/>
+                <filter string="Today" name="filter_today"
+                        domain="[('login_date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                    <filter string="User" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Login Date" name="group_date" context="{'group_by': 'login_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sso_audit_log_action" model="ir.actions.act_window">
+        <field name="name">Microsoft SSO Audit Logs</field>
+        <field name="res_model">sso.audit.log</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="search_view_id" ref="sso_audit_log_view_search"/>
+        <field name="context">{'search_default_filter_today': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Microsoft SSO login attempts recorded yet.
+            </p>
+            <p>
+                Every Microsoft SSO login attempt (successful or failed) will be logged here.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_sso_root" name="Microsoft SSO" sequence="90" groups="base.group_user"
+              web_icon="microsoft_azure_sso,static/description/icon.png"/>
+
+    <menuitem id="menu_sso_dashboard" name="Dashboard"
+              parent="menu_sso_root" action="sso_dashboard_action" sequence="10"/>
+
+    <menuitem id="menu_sso_audit_log" name="Audit Logs"
+              parent="menu_sso_root" action="sso_audit_log_action" sequence="20"/>
+
+    <menuitem id="menu_sso_help" name="Panduan Penggunaan"
+              parent="menu_sso_root" action="sso_help_action" sequence="25"/>
+
+    <menuitem id="menu_sso_configuration" name="Configuration"
+              parent="menu_sso_root" sequence="30"
+              groups="base.group_system"/>
+
+    <record id="action_sso_settings" model="ir.actions.act_window">
+        <field name="name">Microsoft SSO Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'microsoft_azure_sso'}</field>
+    </record>
+
+    <menuitem id="menu_sso_settings" name="Settings"
+              parent="menu_sso_configuration" action="action_sso_settings" sequence="10"
+              groups="base.group_system"/>
+</odoo>
