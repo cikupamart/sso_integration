@@ -83,7 +83,6 @@ audit log, notifikasi, dan dashboard.
 - Group **Microsoft SSO Administrator** mengontrol siapa yang bisa mengubah konfigurasi dan
   melihat seluruh audit log; user biasa hanya bisa melihat audit log miliknya sendiri.
 
-
 """,
     'author': 'Custom Development',
     'website': '',
