@@ -19,6 +19,7 @@ Features
 * Microsoft SSO Audit Logs & Audit Log Tracking (who, when, from where, success/failure)
 * Microsoft SSO Dashboard with login statistics
 * Configurable from Settings > General Settings
+
 """,
     'author': 'Custom Development',
     'website': '',
