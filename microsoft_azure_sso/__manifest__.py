@@ -23,6 +23,10 @@ Features
     'author': 'Custom Development',
     'website': '',
     'license': 'LGPL-3',
+    'images': [
+        'images/main_screenshot.png',
+        'images/dashboard_screenshot.png',
+    ],
     'depends': ['base', 'web', 'mail', 'base_setup'],
     'data': [
         'security/sso_security.xml',
