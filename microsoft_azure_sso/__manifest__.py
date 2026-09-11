@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Microsoft Azure SSO Integration',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Extra Tools',
     'summary': 'Login to Odoo with Microsoft Azure AD (Single Sign-On)',
     'price': 20.99,
