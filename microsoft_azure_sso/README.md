@@ -12,6 +12,11 @@ audit log, notifikasi, dan dashboard.
   waktu, email Azure, user Odoo, IP address, user agent, pesan error.
 - **Microsoft SSO Dashboard** – ringkasan statistik login (total, sukses, gagal, unique user)
   plus daftar login terbaru.
+- **Login Theme Customizer** – ubah tampilan halaman login: warna/gradient/gambar latar,
+  warna aksen tombol, radius & shadow kartu, teks sambutan, 5 quick preset (Midnight, Ocean,
+  Sunset, Corporate, Dark), dan kolom CSS bebas. Menu: **Microsoft SSO → Login Theme**.
+- **Panduan Penggunaan built-in** – halaman bantuan di dalam module
+  (menu **Microsoft SSO → Panduan Penggunaan**).
 
 ## Instalasi
 1. Copy folder `microsoft_azure_sso` ke direktori addons Odoo 18 Anda.
@@ -51,6 +56,23 @@ audit log, notifikasi, dan dashboard.
    secara aman menggunakan token sekali-pakai berumur 60 detik (tidak pernah menyimpan/
    mengetahui password asli user).
 5. Setiap percobaan dicatat di **Microsoft SSO → Audit Logs**.
+
+## Login Theme Customizer
+- Buka **Microsoft SSO → Login Theme**. Halaman ini mengedit satu record tema aktif (singleton).
+- Tab **Background**: pilih solid color, gradient, atau upload gambar sebagai latar halaman login.
+- Tab **Card & Colors**: warna kartu, radius sudut, shadow, warna aksen tombol/link, dan font.
+- Tab **Content**: judul & subjudul sambutan, serta opsi menyembunyikan footer "Powered by Odoo".
+- Tab **Advanced**: kolom CSS bebas untuk kustomisasi yang tidak tercakup di atas.
+- Gunakan **Quick Preset** untuk langsung menerapkan kombinasi warna siap pakai, lalu sesuaikan.
+- Perubahan berlaku otomatis (CSS dibuat ulang setiap halaman login dirender) — klik
+  **Preview Login Page** di header form untuk melihat hasilnya di tab baru.
+- **Catatan teknis**: tema diterapkan lewat CSS yang disuntikkan ke halaman login menggunakan
+  selector standar Odoo (`body.login`, `.oe_login_form`, `.oe_login_buttons`, dst). Ini pendekatan
+  yang aman (tidak mengubah struktur HTML inti sehingga risiko konflik dengan module/versi Odoo
+  lain kecil), namun karena setiap distribusi/versi Odoo bisa punya sedikit perbedaan struktur
+  halaman login, posisi teks sambutan mungkin perlu disesuaikan lagi jika tampilan Anda berbeda
+  dari bawaan Odoo standar — cukup beri tahu saya screenshot halaman login Anda untuk penyesuaian
+  lebih presisi.
 
 ## Catatan Keamanan & Produksi
 - Wajib menggunakan HTTPS di production (`web.base.url` harus HTTPS) karena OAuth2

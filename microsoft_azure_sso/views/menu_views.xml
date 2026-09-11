@@ -6,6 +6,10 @@
     <menuitem id="menu_sso_dashboard" name="Dashboard"
               parent="menu_sso_root" action="sso_dashboard_action" sequence="10"/>
 
+    <menuitem id="menu_sso_login_theme" name="Login Theme"
+              parent="menu_sso_root" action="action_sso_login_theme" sequence="15"
+              groups="base.group_system"/>
+
     <menuitem id="menu_sso_audit_log" name="Audit Logs"
               parent="menu_sso_root" action="sso_audit_log_action" sequence="20"/>
 

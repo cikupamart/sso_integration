@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sso_login_theme_view_form" model="ir.ui.view">
+        <field name="name">sso.login.theme.view.form</field>
+        <field name="model">sso.login.theme</field>
+        <field name="arch" type="xml">
+            <form string="Login Theme">
+                <header>
+                    <button name="action_preview_login" type="object" string="Preview Login Page"
+                            class="btn-secondary" icon="fa-external-link"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Corporate Blue"/></h1>
+                    </div>
+                    <group>
+                        <field name="active"/>
+                        <field name="preset"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Background" name="page_background">
+                            <group>
+                                <field name="background_type" widget="radio"/>
+                            </group>
+                            <group invisible="background_type != 'solid'">
+                                <field name="background_color" placeholder="#1a2242"/>
+                            </group>
+                            <group invisible="background_type != 'gradient'">
+                                <field name="gradient_start" placeholder="#1a2242"/>
+                                <field name="gradient_end" placeholder="#3a4a8f"/>
+                                <field name="gradient_angle"/>
+                            </group>
+                            <group invisible="background_type != 'image'">
+                                <field name="background_image" widget="image" class="oe_avatar"
+                                       options="{'size': [300, 160]}"/>
+                                <field name="background_image_filename" invisible="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Card &amp; Colors" name="page_card">
+                            <group>
+                                <group string="Card">
+                                    <field name="card_background_color" placeholder="#ffffff"/>
+                                    <field name="card_radius"/>
+                                    <field name="card_shadow"/>
+                                </group>
+                                <group string="Accent">
+                                    <field name="primary_color" placeholder="#0b5ed7"/>
+                                    <field name="text_color" placeholder="#1a2242"/>
+                                    <field name="font_family"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Content" name="page_content">
+                            <group>
+                                <field name="welcome_title"/>
+                                <field name="welcome_subtitle"/>
+                                <field name="hide_odoo_footer"/>
+                            </group>
+                        </page>
+
+                        <page string="Advanced" name="page_advanced">
+                            <p class="text-muted">
+                                Extra CSS injected after the generated theme styles. Use this to
+                                fine-tune anything not covered above.
+                            </p>
+                            <field name="custom_css" widget="ace" options="{'mode': 'css'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sso_login_theme" model="ir.actions.act_window">
+        <field name="name">Login Theme</field>
+        <field name="res_model">sso.login.theme</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="default_login_theme"/>
+        <field name="target">current</field>
+    </record>
+</odoo>

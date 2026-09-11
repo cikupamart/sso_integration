@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import base64
 import logging
 import secrets
 import urllib.parse
@@ -21,6 +22,25 @@ class MicrosoftSsoController(http.Controller):
 
     def _get_param(self, key, default=False):
         return request.env['ir.config_parameter'].sudo().get_param(key, default)
+
+    # ------------------------------------------------------------------
+    # Login theme background image (served publicly, bypassing ACL,
+    # since this must be visible on the login page before authentication)
+    # ------------------------------------------------------------------
+    @http.route('/microsoft_sso/theme_background_image', type='http', auth='public', csrf=False)
+    def theme_background_image(self, **kw):
+        theme = request.env['sso.login.theme'].sudo()._get_active_theme()
+        if not theme or not theme.background_image:
+            return request.not_found()
+        try:
+            data = base64.b64decode(theme.background_image)
+        except Exception:
+            return request.not_found()
+        headers = [
+            ('Content-Type', 'image/png'),
+            ('Cache-Control', 'public, max-age=3600'),
+        ]
+        return request.make_response(data, headers=headers)
 
     def _sso_settings(self):
         get = self._get_param

@@ -64,7 +64,34 @@
 
             <div class="card mb-3">
                 <div class="card-header bg-light">
-                    <i class="fa fa-tachometer me-2"/><strong>3. Dashboard &amp; Audit Log</strong>
+                    <i class="fa fa-paint-brush me-2"/><strong>3. Mempercantik Halaman Login</strong>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li class="mb-2">
+                            <i class="fa fa-magic me-1 text-muted"/>
+                            Buka menu <b>Microsoft SSO → Login Theme</b> untuk mengatur tampilan
+                            halaman login: warna/gradient/gambar latar, warna aksen tombol,
+                            radius &amp; shadow kartu, hingga teks sambutan.
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-bolt me-1 text-muted"/>
+                            Gunakan <b>Quick Preset</b> (Midnight, Ocean, Sunset, Corporate, Dark)
+                            untuk langsung mendapatkan kombinasi warna yang serasi, lalu sesuaikan lagi jika perlu.
+                        </li>
+                        <li>
+                            <i class="fa fa-code me-1 text-muted"/>
+                            Tab <b>Advanced</b> menyediakan kolom CSS bebas untuk kustomisasi lebih lanjut.
+                            Perubahan langsung terlihat begitu disimpan &#8211; klik tombol
+                            <b>Preview Login Page</b> untuk melihat hasilnya di tab baru.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                    <i class="fa fa-tachometer me-2"/><strong>4. Dashboard &amp; Audit Log</strong>
                 </div>
                 <div class="card-body">
                     <ul class="mb-0">
@@ -89,7 +116,7 @@
 
             <div class="card">
                 <div class="card-header bg-light">
-                    <i class="fa fa-bell me-2"/><strong>4. Notifikasi</strong>
+                    <i class="fa fa-bell me-2"/><strong>5. Notifikasi</strong>
                 </div>
                 <div class="card-body">
                     <ul class="mb-0">

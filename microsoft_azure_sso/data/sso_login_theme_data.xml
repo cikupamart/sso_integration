@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="default_login_theme" model="sso.login.theme">
+        <field name="name">Default Theme</field>
+        <field name="active">True</field>
+        <field name="background_type">gradient</field>
+        <field name="gradient_start">#1a2242</field>
+        <field name="gradient_end">#3a4a8f</field>
+        <field name="gradient_angle">135</field>
+        <field name="card_background_color">#ffffff</field>
+        <field name="card_radius">16</field>
+        <field name="card_shadow">True</field>
+        <field name="primary_color">#0b5ed7</field>
+        <field name="text_color">#1a2242</field>
+        <field name="welcome_title">Welcome back</field>
+        <field name="welcome_subtitle">Sign in to continue to your workspace</field>
+    </record>
+</odoo>

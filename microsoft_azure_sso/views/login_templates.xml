@@ -18,6 +18,7 @@
             </t>
         </xpath>
         <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">
+            <style t-out="request.env['sso.login.theme'].sudo().get_login_css()"/>
             <t t-if="request.params.get('sso_error')">
                 <div class="alert alert-danger" role="alert">
                     <t t-esc="request.params.get('sso_error')"/>
