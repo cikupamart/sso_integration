@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Microsoft Azure SSO Integration',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Extra Tools',
     'summary': 'Login to Odoo with Microsoft Azure AD (Single Sign-On)',
     'price': 20.99,
@@ -19,6 +19,7 @@ Features
 * Microsoft SSO Audit Logs & Audit Log Tracking (who, when, from where, success/failure)
 * Microsoft SSO Dashboard with login statistics
 * Configurable from Settings > General Settings
+
 Login ke Odoo menggunakan akun Microsoft (Azure AD / Entra ID) via OAuth2, lengkap dengan
 audit log, notifikasi, dan dashboard.
 
@@ -83,11 +84,14 @@ audit log, notifikasi, dan dashboard.
 - Group **Microsoft SSO Administrator** mengontrol siapa yang bisa mengubah konfigurasi dan
   melihat seluruh audit log; user biasa hanya bisa melihat audit log miliknya sendiri.
 
-"""
-    ,
+""",
     'author': 'Custom Development',
     'website': '',
     'license': 'LGPL-3',
+    'images': [
+        'images/main_screenshot.png',
+        'images/dashboard_screenshot.png',
+    ],
     'depends': ['base', 'web', 'mail', 'base_setup'],
     'data': [
         'security/sso_security.xml',
