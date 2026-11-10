@@ -4,7 +4,7 @@
     'version': '18.0.1.0.0',
     'category': 'Extra Tools',
     'summary': 'Login to Odoo with Microsoft Azure AD (Single Sign-On)',
-        'price': 29.99,
+        'price': 4.99,
     'currency': 'EUR',
 
     'description': """
